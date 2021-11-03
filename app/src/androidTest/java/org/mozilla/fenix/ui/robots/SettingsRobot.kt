@@ -512,12 +512,12 @@ private fun rateOnGooglePlayHeading(): UiObject {
 }
 
 private fun aboutFirefoxHeading(): UiObject {
-    val aboutFirefoxHeading = mDevice.findObject(UiSelector().text("About $appName"))
+    val aboutFirefoxHeading = mDevice.findObject(UiSelector().index(11))
+
     scrollToElementByText("About $appName")
-    if (!aboutFirefoxHeading.exists()) {
-        settingsList().swipeUp(2)
-        aboutFirefoxHeading.waitForExists(waitingTime)
-    }
+    settingsList().swipeUp(2)
+    mDevice.waitForIdle()
+    aboutFirefoxHeading.waitForExists(waitingTime)
 
     return aboutFirefoxHeading
 }
